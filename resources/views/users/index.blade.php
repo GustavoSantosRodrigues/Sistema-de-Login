@@ -13,8 +13,8 @@
                     {{-- pega o nome de quem está logado --}}
                 </div>
 
-                <div class="p-6 text-gray-900">
-                    <div class="p-3 bg-gray-100 rounded-lg my-5">
+                <div class="p-2 text-gray-900">
+                    <div class="p-3 bg-gray-100 rounded-lg mb-5">
                         {{ $users->links() }}
                     </div>
 
@@ -31,13 +31,17 @@
                         
                         <tbody>
                             @foreach ($users as $user)
-                                <tr class="hover:bg-red-500 transition-all duration-500 cursor-pointer">
-                                   <td class="text-center">icone</td>
+                                <tr class="hover:bg-gray-100 transition-all duration-500 cursor-pointer">
+                                   <td class="flex justify-center my-4">
+                                       @if ($user->level == 'admin')
+                                          <x-icons.user class="fill-green-500 w-5 h-5" />
+                                        @endif
+                                   </td>
                                    <td class="p-4">{{ $user->name }}</td>
                                    <td>{{ $user->email }}</td>
                                    <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</td>
-                                   <td>
-                                    <a href="">Editar</a>
+                                   <td >
+                                    <a href="{{ route('users.edit', $user->id)}}">Editar</a>
                                    </td>
                                 </tr>
                             @endforeach
