@@ -25,30 +25,39 @@
                                 <th class="p-4">Nome</th>
                                 <th>E-mail</th>
                                 <th>Data de Cadastro</th>
-                                <th class="text-center">Ações</th>
+                                @can('level')
+                                    <th class="text-center">
+                                        Ações
+                                    </th>
+                                @endcan
                             </tr>
                         </thead>
-                        
+
                         <tbody>
                             @foreach ($users as $user)
                                 <tr class="hover:bg-gray-100 transition-all duration-500 cursor-pointer">
-                                   <td class="flex justify-center my-4">
-                                       @if ($user->level == 'admin')
-                                          <x-icons.user class="fill-green-500 w-5 h-5" />
+                                    <td class="flex justify-center my-4">
+                                        @if ($user->level == 'admin')
+                                            <x-icons.user-secret class="fill-orange-400 w-10 h-10" />
+                                        @elseif ($user->level == 'user')
+                                            <x-icons.user class="fill-blue-500 w-10 h-10" />
                                         @endif
-                                   </td>
-                                   <td class="p-4">{{ $user->name }}</td>
-                                   <td>{{ $user->email }}</td>
-                                   <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</td>
-                                   <td >
-                                    <a href="{{ route('users.edit', $user->id)}}">Editar</a>
-                                   </td>
+                                    </td>
+                                    <td class="p-4">{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</td>
+
+                                    @can('level')
+                                        <td>
+                                            <a href="{{ route('users.edit', $user->id) }}">Editar</a>
+                                        </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
 
-                    
+
                 </div>
 
             </div>

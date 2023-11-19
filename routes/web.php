@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
     // users
     Route::get('/users-index', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users-edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::get('/users-edit/{id}', [UserController::class, 'edit'])->name('users.edit'); 
     Route::put('/users-update/{id}', [UserController::class, 'update'])->name('users.update'); 
 });
 
