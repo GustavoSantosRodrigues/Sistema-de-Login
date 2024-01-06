@@ -12,6 +12,7 @@
                     <p class="my-5"> Olá, {{ Auth::user()->name }}</p>
                 </div>
 
+              
                 <div class="p-6 text-gray-900">
                     <div class="bg-gray-100 rounded p-2">
                         {{ $clients->links() }}

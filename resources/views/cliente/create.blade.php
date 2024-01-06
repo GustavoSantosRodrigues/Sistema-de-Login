@@ -10,15 +10,19 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <p class="mb-4">Olá <strong>{{ Auth::user()->name }}</strong></p>
-
-                    <p class="mb-4">
-                        <a href="{{ route('cliente.index') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Lista de clientes</a>
-                    </p>
+                
+                    @can('level')
+                        <p class="mb-4">
+                            <a href="{{ route('cliente.index') }}"
+                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Lista de
+                                clientes</a>
+                        </p>
+                    @endcan
 
                     @if (session('msg'))
                         <p class="bg-blue-500 p-2 rounded text-center text-white my-5">{{ session('msg') }} </p>
-                    @endif                    
-        
+                    @endif
+
                     <form action="{{ route('cliente.store') }}" method="POST">
                         @csrf
 

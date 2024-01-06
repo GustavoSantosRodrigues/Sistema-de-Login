@@ -17,6 +17,12 @@ class ClientController extends Controller
             ]);
     }
 
+    public function __construct()
+    {
+        //neste caso o metodo index é restrito
+        $this->middleware('can:level')->only('index');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
