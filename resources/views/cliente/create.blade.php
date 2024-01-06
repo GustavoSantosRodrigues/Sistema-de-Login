@@ -19,6 +19,11 @@
                         </p>
                     @endcan
 
+                    <p class="mb-4">
+                        <a href="{{ route('meus.clientes', Auth::user()->id) }}"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Meus clientes</a>
+                    </p>
+
                     @if (session('msg'))
                         <p class="bg-blue-500 p-2 rounded text-center text-white my-5">{{ session('msg') }} </p>
                     @endif

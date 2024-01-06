@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -21,6 +22,17 @@ class ClientController extends Controller
     {
         //neste caso o metodo index é restrito
         $this->middleware('can:level')->only('index');
+    }
+
+    public function meus_clientes(User $id)
+    {
+     
+        $user = User::where('id', $id->id)->first();
+        $clients = $user->client()->get();
+
+        return view('cliente.meus_clientes',[
+            'clients' => $clients
+        ]);
     }
 
     /**

@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::resources([
         'cliente' => ClientController::class,
     ]);
+
+    //meus_clientes
+    Route::get('/meus_clientes/{id}', [ClientController::class, 'meus_clientes'])->name('meus.clientes');
 });
 
 require __DIR__.'/auth.php';
