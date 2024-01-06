@@ -28,7 +28,17 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client();
+        $client->user_id            = $request->user_id;
+        $client->name               = $request->name;
+        $client->email              = $request->email;
+        $client->phone              = $request->phone;
+        $client->empresa            = $request->empresa;
+        $client->phone_commercial   = $request->phone_commercial;
+        $client->save();
+
+        return redirect()->route('cliente.create')->with('msg', 'Cliente criado com sucesso!'); //with serve para mostrar a msg no final
+        
     }
 
     /**
