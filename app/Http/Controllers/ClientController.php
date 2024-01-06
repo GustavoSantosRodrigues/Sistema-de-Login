@@ -12,7 +12,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-      
+        return view('cliente.index',[
+                'clients' => Client::orderBy('name')->paginate(2)
+            ]);
     }
 
     /**
@@ -38,7 +40,7 @@ class ClientController extends Controller
         $client->save();
 
         return redirect()->route('cliente.create')->with('msg', 'Cliente criado com sucesso!'); //with serve para mostrar a msg no final
-        
+
     }
 
     /**
