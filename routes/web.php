@@ -43,6 +43,9 @@ Route::middleware('auth')->group(function () {
 
     //meus_clientes
     Route::get('/meus_clientes/{id}', [ClientController::class, 'meus_clientes'])->name('meus.clientes');
+
+    Route::get('/show/{client}', [ClientController::class, 'show'])->name('client.show');
+
 });
 
 require __DIR__.'/auth.php';

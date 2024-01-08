@@ -14,7 +14,9 @@
 
                 <div class="p-6 text-gray-900">
                     <div class="mb-5">
-                        <a href="{{ route('cliente.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Voltar para página de cadastro</a>
+                        <a href="{{ route('cliente.create') }}"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Voltar para
+                            página de cadastro</a>
                     </div>
                     <table class="table-auto w-full">
                         <thead class="text-left bg-gray-100">
@@ -31,9 +33,11 @@
                                 <tr class="hover:bg-gray-100 transition-all duration-500 cursor-pointer">
                                     <td class="p-4">{{ $client->name }}</td>
                                     <td>{{ $client->email }}</td>
-                                    <td>{{ $client->phone }}</td>   
+                                    <td>{{ $client->phone }}</td>
                                     <td>
-                                        <a href="">Detalhes</a>
+                                        <a href="{{ route('client.show', ['client' => $client->id]) }}">
+                                            <x-icons.circle-info class="fill-blue-500 w-10 h-10" />
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

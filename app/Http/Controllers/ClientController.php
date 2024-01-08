@@ -11,12 +11,6 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('cliente.index',[
-                'clients' => Client::orderBy('name')->paginate(2)
-            ]);
-    }
 
     public function __construct()
     {
@@ -26,12 +20,19 @@ class ClientController extends Controller
 
     public function meus_clientes(User $id)
     {
-     
+
         $user = User::where('id', $id->id)->first();
         $clients = $user->client()->get();
 
-        return view('cliente.meus_clientes',[
+        return view('cliente.meus_clientes', [
             'clients' => $clients
+        ]);
+    }
+
+    public function index()
+    {
+        return view('cliente.index', [
+            'clients' => Client::orderBy('name')->paginate(2)
         ]);
     }
 
@@ -66,8 +67,12 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('cliente.show', [
+            'client' => $client
+        ]);
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
